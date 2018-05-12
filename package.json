@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nf start -p 5000",
-    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
+    "heroku-postbuild": "./build-client.sh",
     "test": "mocha"
   },
   "dependencies": {
