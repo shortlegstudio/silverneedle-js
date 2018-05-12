@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { List } from 'semantic-ui-react'
 
 class App extends Component {
   state = {users: []}
@@ -15,9 +16,11 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Users</h1>
+        <List divided relaxed>
         {this.state.users.map(user =>
-          <div key={user.id}>{user.username}</div>
+          <List.Item>{user.username}</List.Item>
         )}
+        </List>
       </div>
     );
   }
