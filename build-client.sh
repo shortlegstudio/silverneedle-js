@@ -1,5 +1,8 @@
+#!/bin/bash
+
+set -e
 cd client
-npm run semantic
 npm install --only=dev
 npm install
+npm run semantic
 npm run build
