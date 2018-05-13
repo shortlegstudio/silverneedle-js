@@ -1,7 +1,5 @@
-cd client/semantic
-gulp build
-cd ..
+cd client
+npm run semantic
 npm install --only=dev
 npm install
 npm run build
-cd ..
