@@ -25,14 +25,11 @@ class Name extends Component {
     }
      
 
-    onRerollName() {
+    async onRerollName() {
         //Connect to name api and request a new name....
-        fetch("/characters/name/create")
-            .then(res => res.json())
-            .then(
-                (result) => { this.props.onNameChange(result.firstname + ' ' + result.lastname) },
-                (error) => { alert(error.message); }
-            );
+        const response = await fetch("/characters/name/create?race=human");
+        const json = await response.json();
+        this.props.onNameChange(json.firstname + ' ' + json.lastname);
     }
 }
 

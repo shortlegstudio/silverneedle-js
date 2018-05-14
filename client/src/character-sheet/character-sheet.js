@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './character-sheet.css';
-import Name from './name/name';
+import Name from './name';
 
 class CharacterSheet extends React.Component {
     constructor(props) {

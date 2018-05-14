@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nf start -p 5000",
     "heroku-postbuild": "./build-client.sh",
-    "test": "mocha",
+    "test": "mocha lib/**/**.spec.js",
     "semantic": "cd client && npm run semantic"
   },
   "dependencies": {
