@@ -7,7 +7,8 @@ import history from './history';
 import Home from './home/home';
 import Profile from './profile/profile';
 import Callback from './callback/callback';
-import CharacterSheet from './character-sheet/character-sheet';
+import CharacterList from './characters/character-list';
+import CharacterGenerator from './characters/character-generator';
 import {
     Container 
 } from 'semantic-ui-react';
@@ -26,19 +27,20 @@ export const makeMainRoutes = () => {
             <div>
                 <Route path="/" render={(props) => <App auth={auth} {...props} />} />
                 <Container inverted> 
-                <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
-                <Route path="/profile" render={(props) => (
-                    !auth.isAuthenticated() ? (
-                        <Redirect to="/home/" />
-                    ) : (
-                        <Profile auth={auth} {...props} />
-                    )
-                )} />
-                <Route path="/callback" render={(props) => {
-                    handleAuthentication(props);
-                    return <Callback {...props} />
-                }} />
-                <Route path="/character-sheet" render={(props) => <CharacterSheet auth={auth} {...props} />} />
+                    <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
+                    <Route path="/profile" render={(props) => (
+                        !auth.isAuthenticated() ? (
+                            <Redirect to="/home/" />
+                        ) : (
+                            <Profile auth={auth} {...props} />
+                        )
+                    )} />
+                    <Route path="/callback" render={(props) => {
+                        handleAuthentication(props);
+                        return <Callback {...props} />
+                    }} />
+                    <Route exact path="/characters/" render={(props) => <CharacterList auth={auth} {...props} />} />
+                    <Route path="/characters/generator" render={(props) => <CharacterGenerator auth={auth} {...props} />} />
                 </Container>
             </div>
         </BrowserRouter>

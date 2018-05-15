@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import './character-sheet.css';
 import Name from './name';
 
-class CharacterSheet extends React.Component {
+class CharacterGenerator extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,11 +18,11 @@ class CharacterSheet extends React.Component {
     render() {
         return (
             <div>
-                <h1>Character Sheet</h1>
+                <h1>Character Generator</h1>
                 <Name name={this.state.name} onNameChange={this.onNameChange} />
             </div>
         );
     }
 }
 
-export default CharacterSheet;
+export default CharacterGenerator;

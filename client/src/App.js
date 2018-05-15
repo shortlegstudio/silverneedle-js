@@ -21,7 +21,7 @@ class App extends Component {
       <div>
         <Menu>
           <Menu.Item header href='/home/'>Silver Needle</Menu.Item>
-          <Menu.Item href='/character-sheet/'>Characters</Menu.Item>
+          <Menu.Item href='/characters/'>Characters</Menu.Item>
             {
                 !isAuthenticated() && (
                 <Menu.Menu position='right'>
