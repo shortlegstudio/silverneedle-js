@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {
-    Container
+    Container,
+    Header
 } from 'semantic-ui-react';
+import Hero from './hero';
 
 class Home extends Component {
     componentWillMount() {
@@ -17,24 +19,12 @@ class Home extends Component {
     render() {
       const { isAuthenticated } = this.props.auth;
       return (
-          <div>
-            <h1>Silver Needle - JS</h1>
-            {
-                !isAuthenticated() && (
-                    <div>
-                        <p>Not Logged in</p>
-                    </div>
-                )
-            }
-            {
-                isAuthenticated() && (
-                    <div>
-                        <p>Logged in...</p>
-                    </div>
-                )
-            }
-            {this.props.children}
-          </div>
+        <Container>
+                <Hero />
+            <div>
+                {this.props.children}
+            </div>
+        </Container>
       );
     }
   }
