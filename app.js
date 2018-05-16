@@ -7,7 +7,21 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var nameRouter = require('./routes/characters/name.js');
 
+//Database
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize(process.env.DATABASE_URL);
+
 var app = express();
+
+console.log('Connecting to database: ' + process.env.DATABASE_URL);
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
