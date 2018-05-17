@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nf start -p 5000",
-    "heroku-postbuild": "npm run-script db-migrate && ./build-client.sh",
+    "heroku-postbuild": "./heroku-postbuild.sh",
     "test": "mocha lib/**/**.spec.js",
     "semantic": "cd client && npm run semantic",
     "db-migrate": "node_modules/.bin/sequelize db:migrate"
