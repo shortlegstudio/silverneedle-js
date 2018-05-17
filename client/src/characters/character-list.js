@@ -8,9 +8,30 @@ import {
     Table
 } from 'semantic-ui-react';
 
+function CharacterListItem(props) {
+    return ( 
+        <Table.Row>
+            <Table.Cell>{props.item.first_name}</Table.Cell>
+            <Table.Cell>{props.item.last_name}</Table.Cell>
+        </Table.Row>
+    );
+}
+
 class CharacterList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {list: []};
+    }
+
+    componentDidMount() {
+        this.loadCharacterList();
+    }
+
     render() {
         const { isAuthenticated } = this.props.auth;
+        var list = this.state.list.map((character) => 
+            <CharacterListItem item={character} />
+        );
         return (
             <Segment>
                 <Menu attached='top' compact>
@@ -21,13 +42,23 @@ class CharacterList extends Component {
                 <Table>
                     <Table.Header>
                         <Table.Row>
-                            <Table.Cell>Name</Table.Cell>
+                            <Table.Cell>First Name</Table.Cell>
+                            <Table.Cell>Last Name</Table.Cell>
                             <Table.Cell>Actions</Table.Cell>
                         </Table.Row>
                     </Table.Header>
+                    <Table.Body>
+                        {list}
+                    </Table.Body>
                 </Table>
             </Segment>
         );
+    }
+
+    async loadCharacterList() {
+        const response = await fetch("/characters/");
+        const list = await response.json();
+        this.setState({list: list});
     }
 }
 

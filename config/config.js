@@ -1,3 +1,6 @@
+var dotnev = require('dotenv');
+dotnev.config();
+
 module.exports = {
     'development': {
         dialect: 'pg',
