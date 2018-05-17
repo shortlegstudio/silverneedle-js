@@ -1,21 +1,14 @@
-const models = require('../../models');
 var express = require('express');
 var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json();
 var router = express.Router();
 
-router.get('/', function(req, res, next) {
-    models.Character.findAll().then(function(characters) {
-        res.json(characters);
-    });
-}) 
-    
-router.post('/create', jsonParser, function(req, res) {
-    var m = models.Character.create({
-        first_name: req.body.first_name,
-        last_name: req.body.last_name
-    });
-    res.json(m);
-});
+const names = require('./name');
+const list = require('./list');
+const create = require('./create');
+
+router.get('/', list);
+router.post('/create', jsonParser, create);
+router.get('/name/create', names)
 
 module.exports = router;
