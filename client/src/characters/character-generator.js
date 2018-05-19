@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import Name from './name';
 import { 
-    Button
+    Button,
+    Segment
 } from 'semantic-ui-react';
 import history from '../history';
+import {showNotifier} from '../Notifier'
 
 class CharacterGenerator extends React.Component {
     constructor(props) {
@@ -23,24 +25,29 @@ class CharacterGenerator extends React.Component {
 
     render() {
         return (
-            <div>
+            <Segment>
                 <h1>Character Generator</h1>
                 <Name first_name={this.state.first_name} last_name={this.state.last_name} onNameChange={this.onNameChange} />
                 <div>
                 <Button primary onClick={this.save}>Save</Button>
                 </div>
-            </div>
+            </Segment>
         );
     }
 
     async save() {
-        await fetch("/characters/create", {
+        const response = await fetch("/characters/create", {
             method: 'post',
             body: JSON.stringify(this.state),
             headers: {"Content-Type": "application/json"}
-        }).then(function() {
-            history.replace("/characters");
         });
+
+        if(response.status === 200) {
+            history.replace("/characters");
+        } else {
+            const msg = await response.json();
+            showNotifier(msg.error, true, 'Saving Character');
+        }
     }
 }
 

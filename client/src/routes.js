@@ -9,6 +9,7 @@ import Profile from './profile/profile';
 import Callback from './callback/callback';
 import CharacterList from './characters/character-list';
 import CharacterGenerator from './characters/character-generator';
+import Notifier from './Notifier';
 import {
     Container 
 } from 'semantic-ui-react';
@@ -27,6 +28,7 @@ export const makeMainRoutes = () => {
             <div>
                 <Route path="/" render={(props) => <App auth={auth} {...props} />} />
                 <Container inverted> 
+                    <Notifier />
                     <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
                     <Route path="/profile" render={(props) => (
                         !auth.isAuthenticated() ? (
