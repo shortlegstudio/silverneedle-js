@@ -24,22 +24,33 @@ class CharacterGenerator extends React.Component {
     }
 
     render() {
+        const authenticated = this.props.auth.isAuthenticated();
+        const saveButton = authenticated ? (
+            <Button primary onClick={this.save}>Save</Button>
+        ) : ( <Button primary onClick={this.save} disabled>Save</Button>);
+    
         return (
             <Segment>
                 <h1>Character Generator</h1>
                 <Name first_name={this.state.first_name} last_name={this.state.last_name} onNameChange={this.onNameChange} />
                 <div>
-                <Button primary onClick={this.save}>Save</Button>
+                {saveButton}
                 </div>
             </Segment>
         );
     }
 
     async save() {
+        const { getAccessToken } = this.props.auth;
+        var character = this.state;
+
         const response = await fetch("/characters/create", {
             method: 'post',
-            body: JSON.stringify(this.state),
-            headers: {"Content-Type": "application/json"}
+            body: JSON.stringify(character),
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${getAccessToken()}`
+            }
         });
 
         if(response.status === 200) {

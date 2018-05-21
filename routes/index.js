@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var characters = require('./characters');
+var users = require('./users');
 
 /* Retrieve React Front-End */
 router.get('/', function(req, res, next) {
@@ -8,5 +9,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.use('/characters', characters);
+router.use('/users', characters);
 
 module.exports = router;
