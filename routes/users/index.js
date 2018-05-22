@@ -4,8 +4,8 @@ var jsonParser = bodyParser.json();
 var router = express.Router();
 
 const create = require('./create');
-const validateJwt = require('../../lib/auth/auth');
+const protectedRequest = require('../../lib/auth/auth');
 
-router.post('/create', validateJwt, create);
+router.post('/create', protectedRequest, create);
 
 module.exports = router;
