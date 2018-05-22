@@ -9,6 +9,5 @@ router.get('/', function(req, res, next) {
 });
 
 router.use('/characters', characters);
-router.use('/users', characters);
 
 module.exports = router;
