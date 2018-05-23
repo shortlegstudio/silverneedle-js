@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var characters = require('./characters');
-var users = require('./users');
+var protectedRequest = require('./auth')
 
 /* Retrieve React Front-End */
 router.get('/', function(req, res, next) {

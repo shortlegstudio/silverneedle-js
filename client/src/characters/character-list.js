@@ -56,7 +56,11 @@ class CharacterList extends Component {
     }
 
     async loadCharacterList() {
-        const response = await fetch("/characters/");
+        const response = await fetch("/characters/", {
+            headers: {
+                "Authorization" : `Bearer ${this.props.auth.getAccessToken()}` 
+            }
+        });
         const list = await response.json();
         this.setState({list: list});
     }
